@@ -80,13 +80,18 @@ namespace DemoTesting.BLL.Test.Services
 
 
         #region Division
-        [Fact]
-        public void Division_2int() 
+        public static IEnumerable<object[]> valuesForDivisionTest = new List<object[]>
+        {
+            new object[] {5, 2, 2.5 },
+            new object[] {20, 100, 0.2 },
+            new object[] {50, 2, 25 }
+        };
+
+        [Theory]
+        [MemberData(nameof(valuesForDivisionTest))]
+        public void Division_2int(int val1, int val2, double expected)
         {
             ICalculatorService service = GetCalculatorService();
-            const int val1 = 5;
-            const int val2 = 2;
-            const double expected = 2.5;
 
             //Action 
             double result = service.Division(val1, val2);
