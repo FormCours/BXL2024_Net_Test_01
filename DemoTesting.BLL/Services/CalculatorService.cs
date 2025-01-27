@@ -23,7 +23,12 @@ namespace DemoTesting.BLL.Services
 
         public double Division(double nb1, double nb2)
         {
-            throw new NotImplementedException();
+            if (nb2 == 0)
+            {
+                throw new CalculatorDividePerZeroException();
+            }
+            
+            return Math.Round(nb1 / nb2, 3);
         }
 
 
